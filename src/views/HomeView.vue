@@ -35,24 +35,33 @@ export default {
   }),
 
   mounted() {
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=100")
-      .then((response) => {
-        this.pokemons = response.data.results;
-
-        this.pokemons.forEach((pokemon) => {
-          const id = this.get_id(pokemon);
-          axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then((response) => {
-            pokemon.id = response.data.id;
-            pokemon.types = response.data.types.map(type => type.type.name);
-          });
-        });
-      });
+    this.fetch_pokemons()
   },
+
   methods: {
     get_id(pokemon) {
       return Number(pokemon.url.split("/")[6]);
     },
+
+    fetch_pokemons(){
+      try {
+        axios
+          .get("https://pokeapi.co/api/v2/pokemon?limit=100")
+          .then((response) => {
+            this.pokemons = response.data.results;
+            this.pokemons.forEach((pokemon) => {
+              const id = this.get_id(pokemon);
+              axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then((response) => {
+                pokemon.id = response.data.id;
+                pokemon.types = response.data.types.map(type => type.type.name);
+              });
+            });
+          });
+      } catch (error) {
+        console.log('Algo não funcionou como deveria: ', error)
+        return {error: 'Falha ao tentar buscar os dados da API !'}
+      }
+    }
   }
 };
 </script>
@@ -72,63 +81,5 @@ export default {
   border-radius: 20px;
   padding: 20px;
 }
-
-.card-pokemon {
-  padding: 10px;
-  box-shadow: none;
-  cursor: pointer;
-  transition: all 400ms ease-in-out;
-  border-radius: 20px;
-}
-
-.card-pokemon:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  transform: scale(1.1);
-}
-
-.container-image-pokemon {
-  border-radius: 10px;
-}
-
-.container-image-pokemon img {
-  display: block;
-  margin: 0 auto;
-}
-
-.container-info-pokemon {
-  margin: 0;
-  padding: 0;
-}
-
-.container-number-name-pokemon {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.container-number-name-pokemon h4 {
-  color: #585858;
-}
-
-.container-number-name-pokemon h3 {
-  text-transform: capitalize;
-  margin: 0;
-}
-
-.container-types-pokemon {
-  display: flex;
-  gap: 10px;
-}
-
-.type-pokemon {
-  width: 70px;
-  text-align: center;
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #fff;
-  font-size: 12px;
-}
-
 
 </style>
