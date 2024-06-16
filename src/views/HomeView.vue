@@ -12,28 +12,7 @@
           cols="12"
           md="3"
         >
-          <v-card :class="['card-pokemon']" @click="go_to_pokemon_info(pokemon.id)">
-            <v-container class="container-image-pokemon" :style="{ backgroundColor: getBackgroundColor(pokemon.types) }">
-              <img 
-                :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`"
-                :alt="pokemon.name"
-                width="80%"
-              />
-            </v-container>
-
-            <v-container class="container-info-pokemon">
-              <v-container class="container-number-name-pokemon">
-                <h4>n° {{ pokemon.id }}</h4>
-                <h3 class="text-center">{{ pokemon.name }}</h3>
-              </v-container>
-              
-              <v-container class="container-types-pokemon">
-                <span v-for="type in pokemon.types" :key="type" class="type-pokemon" :style="{ backgroundColor: getPokemonColor(type)}" >
-                  {{ type }}
-                </span>
-              </v-container>
-            </v-container>
-          </v-card>
+          <PokemonCardVue :pokemon="pokemon" /> 
         </v-col>
       </v-row>
     </v-container>
@@ -42,12 +21,15 @@
 
 <script>
 
-import { getBackgroundColor, getPokemonColor } from '@/utils';
 import axios from 'axios';
+import PokemonCardVue from '@/components/PokemonCard.vue';
 
 export default {
   name: 'App',
-  
+
+  components: {
+    PokemonCardVue
+  },
   data: () => ({
     pokemons: []
   }),
@@ -68,14 +50,6 @@ export default {
       });
   },
   methods: {
-    getBackgroundColor,
-    getPokemonColor,
-
-    go_to_pokemon_info(id) {
-      console.log(id)
-      this.$router.push({ name: 'pokemon', params: { id: id } });
-    },
-
     get_id(pokemon) {
       return Number(pokemon.url.split("/")[6]);
     },
