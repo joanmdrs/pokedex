@@ -25,7 +25,7 @@ import axios from 'axios';
 import PokemonCardVue from '@/components/PokemonCard.vue';
 
 export default {
-  name: 'App',
+  name: 'PokedexView',
 
   components: {
     PokemonCardVue

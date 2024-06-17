@@ -124,8 +124,6 @@ export default {
 
 .content-page-pokemon {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
 }
 
 .content-page-pokemon .image-pokemon {
@@ -135,20 +133,16 @@ export default {
 .custom-tab {
     font-size: 14px;
     padding: 10px 15px; 
-    min-width: 120px;
-}
-
-.v-tab--active .custom-tab {
-    background-color: red;
-    color: #ffffff; 
-}
-
-.v-tab--active .custom-tab:hover {
-    background-color: #2a1e50;
 }
 
 .v-tab:hover .custom-tab {
     background-color: #e0e0e0;
+}
+
+@media screen and (max-width: 720px) {
+    .content-page-pokemon {
+        flex-direction: column;
+    }
 }
 
 </style>
