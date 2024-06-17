@@ -1,26 +1,29 @@
 <template>
-    <v-card class="card-pokemon" @click="go_to_pokemon_info(pokemon.id)">
-        <v-container class="container-image-pokemon" :style="{ backgroundColor: getBackgroundColor(pokemon.types) }">
-            <img 
-            :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`"
-            :alt="pokemon.name"
-            width="80%"
-            />
+  <v-card class="card-pokemon" @click="go_to_pokemon_info(pokemon.id)">
+    <v-container class="container-image-pokemon" :style="{ backgroundColor: getBackgroundColor(pokemon.types) }">
+        <img 
+          :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`"
+          :alt="pokemon.name"
+          width="80%"
+        />
+    </v-container>
+    <v-container class="container-info-pokemon pa-0 ma-0">
+        <v-container class="container-number-name-pokemon">
+          <h4>n° {{ pokemon.id }}</h4>
+          <h3 class="text-capitalize">{{ pokemon.name }}</h3>
+        </v-container> 
+        <v-container class="container-types-pokemon">
+          <span 
+            v-for="type in pokemon.types" 
+            :key="type" 
+            class="type-pokemon" 
+            :style="{ backgroundColor: getPokemonColor(type)}" 
+          >
+            {{ type }}
+          </span>
         </v-container>
-
-        <v-container class="container-info-pokemon">
-            <v-container class="container-number-name-pokemon">
-            <h4>n° {{ pokemon.id }}</h4>
-            <h3 class="text-center">{{ pokemon.name }}</h3>
-            </v-container>
-            
-            <v-container class="container-types-pokemon">
-            <span v-for="type in pokemon.types" :key="type" class="type-pokemon" :style="{ backgroundColor: getPokemonColor(type)}" >
-                {{ type }}
-            </span>
-            </v-container>
-        </v-container>
-        </v-card>
+    </v-container>
+  </v-card>
 </template>
 
 <script> 
@@ -45,6 +48,7 @@ export default {
 </script>
 
 <style>
+
 .card-pokemon {
   padding: 10px;
   box-shadow: none;
@@ -67,11 +71,6 @@ export default {
   margin: 0 auto;
 }
 
-.container-info-pokemon {
-  margin: 0;
-  padding: 0;
-}
-
 .container-number-name-pokemon {
   display: flex;
   justify-content: space-between;
@@ -80,11 +79,6 @@ export default {
 
 .container-number-name-pokemon h4 {
   color: #585858;
-}
-
-.container-number-name-pokemon h3 {
-  text-transform: capitalize;
-  margin: 0;
 }
 
 .container-types-pokemon {

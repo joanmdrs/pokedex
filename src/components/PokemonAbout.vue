@@ -26,7 +26,7 @@
                 <th class="text-right"> Habilidades: </th>
                 <td class="text-left" :key="pokemon.name">
                     <ul>
-                        <li class="pokemon-abilities" v-for="habilidade in pokemon.abilities" :key="habilidade.slot">
+                        <li class="text-capitalize" v-for="habilidade in pokemon.abilities" :key="habilidade.slot">
                             {{ habilidade.ability.name }}{{ habilidade.is_hidden ? " (Habilidade oculta)" : "" }}
                         </li>
                     </ul>

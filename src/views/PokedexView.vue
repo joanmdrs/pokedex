@@ -1,22 +1,20 @@
 <template>
-  <v-app>
-    <v-container class="header-pokedex">
-      Pokédex
-    </v-container>
+  <v-container class="header-pokedex">
+    Pokédex
+  </v-container>
 
-    <v-container class="container-pokedex">
-      <v-row>
-        <v-col
-          v-for="(pokemon, index) in pokemons"
-          :key="index"
-          cols="12"
-          md="3"
-        >
-          <PokemonCardVue :pokemon="pokemon" /> 
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-app>
+  <v-container class="content-pokedex">
+    <v-row>
+      <v-col
+        v-for="(pokemon, index) in pokemons"
+        :key="index"
+        cols="12"
+        md="3"
+      >
+        <PokemonCardVue :pokemon="pokemon" /> 
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -73,13 +71,13 @@ export default {
   font-size: 30px;
   font-weight: bold;
   color: #3A2F66;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container-pokedex {
+.content-pokedex {
   border: 2px solid #3A2F66;
   border-radius: 20px;
   padding: 20px;
+  margin-bottom: 10px;
 }
 
 </style>

@@ -1,20 +1,21 @@
 <template>
-    <v-container class="button-on-back">
+    <v-container>
         <v-btn class="ma-2" @click="go_back">
             <v-icon
-            icon="mdi-arrow-left"
-            start
+                icon="mdi-arrow-left"
+                start
             ></v-icon>
             VOLTAR
         </v-btn>
     </v-container>
-    <v-container class="page-pokemon-info mb-10">
+
+    <v-container class="page-pokemon mb-10">
         <v-container class="header-page-pokemon">
             <v-container class="pa-5 pb-0 ma-0">
-                <h1 class="pokemon-name"> # {{ pokemon.id }} {{ pokemon.name }} </h1>
-            </v-container   >
+                <h1 class="text-capitalize"> # {{ pokemon.id }} {{ pokemon.name }} </h1>
+            </v-container>
         
-            <v-container class="container-types-pokemon pa-5 ma-0">
+            <v-container class="d-flex ga-5 pa-5 ma-0">
                 <span   
                     v-for="type in pokemon.types" 
                     :key="type" class="type-pokemon" 
@@ -38,7 +39,7 @@
                 <v-tabs v-model="tab">
                     <v-tab class="custom-tab" value="about">Sobre</v-tab>
                     <v-tab class="custom-tab" value="statistics">Estatísticas</v-tab>
-                    <v-tab class="custom-tab" value="evolution">Evolução</v-tab>
+                    <!-- <v-tab class="custom-tab" value="evolution">Evolução</v-tab> -->
 
                 </v-tabs>
                 <v-card-text>
@@ -51,9 +52,9 @@
                             <PokemonStatsVue :pokemon="pokemon" />
                         </v-tabs-window-item>
 
-                        <v-tabs-window-item value="evolution">
-                            <!-- <PokemonEvolutionVue :pokemon="pokemon" /> -->
-                        </v-tabs-window-item>
+                        <!-- <v-tabs-window-item value="evolution">
+                            <PokemonEvolutionVue :pokemon="pokemon" />
+                        </v-tabs-window-item> -->
                     </v-tabs-window>
                 </v-card-text>
             </v-container>
@@ -112,14 +113,9 @@ export default {
 
 <style>
 
-.page-pokemon-info {
+.page-pokemon {
     border: 2px solid #3A2F66;
     border-radius: 20px;
-}
-
-.pokemon-name, 
-.pokemon-abilities {
-    text-transform: capitalize;
 }
 
 .content-page-pokemon {
