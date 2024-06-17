@@ -24,7 +24,7 @@ O **Pokédex** é uma aplicação web desenvolvida para exibir informações det
 ### Passos
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/seu-usuario/pokemon-info-viewer.git
+    git clone https://github.com/joanmdrs/pokedex.git
     cd pokedex
     ```
 
